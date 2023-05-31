@@ -27,4 +27,10 @@ func InitRouter(db *gorm.DB, e *echo.Echo) {
 			"message": "hello world",
 		})
 	})
+
+	e.GET("/world", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, map[string]any{
+			"message": "world",
+		})
+	})
 }
