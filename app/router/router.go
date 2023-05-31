@@ -4,6 +4,7 @@ import (
 	_userData "be17/cleanarch/features/user/data"
 	_userHandler "be17/cleanarch/features/user/handler"
 	_userService "be17/cleanarch/features/user/service"
+	"net/http"
 
 	"be17/cleanarch/app/middlewares"
 
@@ -20,4 +21,10 @@ func InitRouter(db *gorm.DB, e *echo.Echo) {
 	e.GET("/users", userHandlerAPI.GetAllUser, middlewares.JWTMiddleware())
 	e.POST("/users", userHandlerAPI.CreateUser)
 	e.POST("/login", userHandlerAPI.Login)
+
+	e.GET("/hello", func(c echo.Context) error {
+		return c.JSON(http.StatusOK, map[string]any{
+			"message": "hello world",
+		})
+	})
 }
